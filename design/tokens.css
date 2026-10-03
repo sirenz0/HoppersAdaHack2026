@@ -26,7 +26,7 @@
 
     /* Not a named Figma style — approximated from the dark donation panel,
        which wasn't backed by a style-panel swatch I could inspect exactly. */
-    --surface-dark: #16210a;
+    --surface-dark: #11251D;
 
     /* Back-compat aliases used throughout style.css */
     --color-primary: var(--accent-3);

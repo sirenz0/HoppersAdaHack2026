@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}About Us | FoodForScotland{% endblock %}
+
+{% block content %}
+<section class="about-section">
+    <h1>About Us</h1>
+    <p class="about-subtitle">Who we are, what we do, and how to get in touch.</p>
+
+    <div class="about-panel">
+        <h2>Nobody in Scotland should go hungry</h2>
+        <p>
+            FoodForScotland brings together foodbanks, volunteers, local
+            businesses and neighbours. We make it easy to see what is
+            needed, give what you can, and find a meal when you need one.
+        </p>
+
+        <div class="about-block">
+            <h3>Our mission</h3>
+            <p>To tackle hunger in Scotland by making it simple to donate, volunteer and get food.</p>
+        </div>
+
+        <h3 class="about-heading">What we do</h3>
+
+        <div class="about-block">
+            <h3>Show what is needed</h3>
+            <p><a href="{{ url_for('donations.donate') }}">A live counter of the food groups foodbanks are running low on.</a></p>
+        </div>
+
+        <div class="about-block">
+            <h3>Organise volunteers</h3>
+            <p>People deliver food, cook hot meals, and companies lend vans and cars.</p>
+        </div>
+
+        <div class="about-block">
+            <h3>Listen to ideas</h3>
+            <p>Anyone can suggest ways to improve the foodbank or help in new ways.</p>
+        </div>
+
+        <div class="about-block about-highlight">
+            <h3>Why it matters</h3>
+            <p>Trussell's Scottish foodbanks handed out 262,400 emergency food parcels in 2023/24, close to the highest on record.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
