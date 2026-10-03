@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Home | FoodForScotland{% endblock %}
+
+{% block content %}
+<section class="how-it-works">
+    <h2>How it works</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>1. Donate</h3>
+            <p>Choose a food bank near you and make a donation in just a few clicks.</p>
+        </div>
+        <div class="card">
+            <h3>2. We coordinate</h3>
+            <p>Delivery requests are created so donated goods can reach food banks.</p>
+        </div>
+        <div class="card">
+            <h3>3. Volunteers deliver</h3>
+            <p>Local volunteers claim delivery requests and get food where it's needed.</p>
+        </div>
+    </div>
+</section>
+
+<section class="home-gallery">
+    <a class="gallery-item gallery-volunteer" href="{{ url_for('volunteers.landing') }}">
+        <div class="gallery-caption">
+            <h3>Volunteer with Us!</h3>
+            <p>Give your time to help collect, cook, or deliver food.</p>
+        </div>
+    </a>
+    <a class="gallery-item gallery-donate" href="{{ url_for('donations.donate') }}">
+        <div class="gallery-caption">
+            <h3>Donate to food banks in need</h3>
+            <p>Choose a food bank near you and make a donation in just a few clicks.</p>
+        </div>
+    </a>
+    <a class="gallery-item gallery-receive" href="{{ url_for('recipients.receive') }}">
+        <div class="gallery-caption">
+            <h3>Start receiving now</h3>
+            <p>Call out a feature, benefit, or value that can stand on its own.</p>
+        </div>
+    </a>
+</section>
+
+<section class="map-callout">
+    <h2>See where help is needed most</h2>
+    <p>Check the live map of food banks across Scotland and their current need.</p>
+    <a class="btn btn-secondary" href="{{ url_for('map.view_map') }}">View the map</a>
+</section>
+{% endblock %}

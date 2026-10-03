@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up to Volunteer | FoodForScotland{% endblock %}
+
+{% block content %}
+{% if dev_volunteers %}
+<p class="dev-line">Dev: {% for v in dev_volunteers %}{{ v.email }}{% if not loop.last %} &middot; {% endif %}{% endfor %}</p>
+{% endif %}
+
+<section class="form-section">
+    <h1>Sign up to volunteer</h1>
+    <form method="POST" action="{{ url_for('volunteers.signup') }}">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="phone">
+
+        <label for="city">City</label>
+        <input type="text" id="city" name="city">
+
+        <label class="checkbox-label">
+            <input type="checkbox" id="has_vehicle" name="has_vehicle">
+            I have access to a vehicle
+        </label>
+
+        <label>Which days are you generally available to deliver?</label>
+        <div class="checkbox-grid">
+            {% for day in days_of_week %}
+                <label class="checkbox-label">
+                    <input type="checkbox" name="days" value="{{ loop.index0 }}">
+                    {{ day }}
+                </label>
+            {% endfor %}
+        </div>
+
+        <label for="period">What time of day works best?</label>
+        <select id="period" name="period">
+            <option value="morning">Morning (9am–12pm)</option>
+            <option value="afternoon">Afternoon (12pm–5pm)</option>
+            <option value="evening">Evening (5pm–8pm)</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+</section>
+{% endblock %}

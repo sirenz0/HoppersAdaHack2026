@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Your Schedule | FoodForScotland{% endblock %}
+
+{% block content %}
+<section class="schedule-section">
+    <h1>Thanks, {{ recipient.name.split(' ')[0] }} — here's your schedule</h1>
+    <p>
+        Below are the times you can collect food, and when volunteers are
+        generally available to help deliver it to you instead, if you'd
+        rather not travel.
+    </p>
+
+    {% if my_bookings %}
+        <h2>Your delivery requests</h2>
+        <ul class="booking-list">
+            {% for booking in my_bookings %}
+                <li class="booking-item status-{{ booking.status }}">
+                    <strong>{{ booking.day }}</strong>, {{ booking.time_range }}
+                    from {{ booking.food_bank_name }} &mdash;
+                    {% if booking.status == "requested" %}
+                        <span class="status-label">Waiting for a volunteer</span>
+                    {% elif booking.status == "booked" %}
+                        <span class="status-label">Booked{% if booking.volunteer_first_name %} with {{ booking.volunteer_first_name }}{% endif %}</span>
+                    {% elif booking.status == "completed" %}
+                        <span class="status-label">Delivered</span>
+                    {% else %}
+                        <span class="status-label">{{ booking.status }}</span>
+                    {% endif %}
+                    {% if booking.notes %}<p>{{ booking.notes }}</p>{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Request a delivery</h2>
+    <p>Prefer not to travel? Request a delivery and a volunteer will book it when they're free.</p>
+    <form method="POST" action="{{ url_for('recipients.request_delivery', recipient_id=recipient.id) }}" class="request-delivery-form">
+        {% if not recipient.preferred_food_bank_id %}
+            <label for="food_bank_id">Food bank</label>
+            <select id="food_bank_id" name="food_bank_id" required>
+                {% for fb in request_food_banks %}
+                    <option value="{{ fb.id }}">{{ fb.name }} — {{ fb.city }}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+
+        <label for="day_of_week">Preferred day</label>
+        <select id="day_of_week" name="day_of_week" required>
+            {% for day in days_of_week %}
+                <option value="{{ loop.index0 }}">{{ day }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="period">Preferred time</label>
+        <select id="period" name="period">
+            <option value="morning">Morning (9am–12pm)</option>
+            <option value="afternoon">Afternoon (12pm–5pm)</option>
+            <option value="evening">Evening (5pm–8pm)</option>
+        </select>
+
+        <label for="notes">Delivery notes (optional)</label>
+        <textarea id="notes" name="notes" rows="2" placeholder="e.g. leave with neighbour, gate code, etc."></textarea>
+
+        <button type="submit" class="btn btn-primary">Request delivery</button>
+    </form>
+
+    <h2>Food bank collection times</h2>
+    {% if collection_schedule %}
+        {% for entry in collection_schedule %}
+            <div class="card schedule-card">
+                <h3>{{ entry.food_bank.name }}</h3>
+                <p>
+                    {{ entry.food_bank.address }}, {{ entry.food_bank.city }}
+                    {% if entry.food_bank.postcode %}{{ entry.food_bank.postcode }}{% endif %}
+                </p>
+                {% if entry.slots %}
+                    <ul class="slot-list">
+                        {% for slot in entry.slots %}
+                            <li>
+                                <strong>{{ slot.day }}</strong>: {{ slot.time_range }}
+                                {% if slot.notes %}&mdash; {{ slot.notes }}{% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No collection times published yet — contact the food bank directly.</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No food banks are set up yet.</p>
+    {% endif %}
+
+    <h2>Volunteer delivery availability</h2>
+    <p>These are the days and times volunteers are generally free to deliver.</p>
+    {% if delivery_availability %}
+        <table class="availability-table">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Volunteers available</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in delivery_availability %}
+                    <tr>
+                        <td>{{ row.day }}</td>
+                        <td>{{ row.time_range }}</td>
+                        <td>{{ row.volunteer_count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No volunteers have shared their availability yet.</p>
+    {% endif %}
+
+    <p class="schedule-footer">
+        <a href="{{ url_for('map.view_map') }}">View the food bank map</a> &middot;
+        <a href="{{ url_for('main.index') }}">Back to home</a>
+    </p>
+</section>
+{% endblock %}

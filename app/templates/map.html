@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Food Bank Map | FoodForScotland{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+{% endblock %}
+
+{% block content %}
+<section class="map-section">
+    <h1>Food banks across Scotland</h1>
+    <p>Click a marker to see details and donate.</p>
+
+    <div id="map"></div>
+    <p id="map-status" class="map-status"></p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    const map = L.map("map").setView([56.4907, -4.2026], 6); // centered on Scotland
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 18,
+        attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
+
+    fetch("{{ url_for('map.api_food_banks') }}")
+        .then((res) => res.json())
+        .then((foodBanks) => {
+            const statusEl = document.getElementById("map-status");
+
+            if (!foodBanks.length) {
+                statusEl.textContent =
+                    "No food banks with map locations yet.";
+                return;
+            }
+
+            const pinIcon = L.divIcon({
+                className: "food-bank-pin",
+                html: `<svg width="30" height="38" viewBox="0 0 30 38">
+                    <path d="M15 0C6.7 0 0 6.7 0 15c0 10.5 15 23 15 23s15-12.5 15-23C30 6.7 23.3 0 15 0z"
+                        fill="#619111" stroke="white" stroke-width="2.5"/>
+                    <circle cx="15" cy="15" r="5.5" fill="white"/>
+                </svg>`,
+                iconSize: [30, 38],
+                iconAnchor: [15, 38],
+                popupAnchor: [0, -36],
+            });
+
+            foodBanks.forEach((fb) => {
+                const marker = L.marker([fb.latitude, fb.longitude], {
+                    icon: pinIcon,
+                }).addTo(map);
+
+                marker.bindPopup(`
+                    <strong>${fb.name}</strong><br>
+                    ${fb.address ? fb.address + "<br>" : ""}
+                    ${fb.city}${fb.postcode ? ", " + fb.postcode : ""}<br>
+                    <a href="/donate/">Donate</a> &middot; <a href="/volunteer/">Volunteer to deliver</a>
+                `);
+            });
+        })
+        .catch(() => {
+            document.getElementById("map-status").textContent =
+                "Could not load food bank data.";
+        });
+</script>
+{% endblock %}

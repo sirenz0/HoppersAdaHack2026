@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Get Help | FoodForScotland{% endblock %}
+
+{% block content %}
+{% if dev_recipients %}
+<p class="dev-line">Dev: {% for r in dev_recipients %}<a href="{{ url_for('recipients.schedule', recipient_id=r.id) }}">{{ r.name }}</a>{% if not loop.last %} &middot; {% endif %}{% endfor %}</p>
+{% endif %}
+
+<section class="form-section">
+    <h1>Sign up to receive food support</h1>
+    <p>
+        If you or your household are struggling to afford food, you can sign
+        up here. A local food bank will get in touch to arrange support.
+        Everything you share is kept private and only used to help connect
+        you with food aid.
+    </p>
+
+    <form method="POST" action="{{ url_for('recipients.receive') }}">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="phone">
+
+        <label for="address">Address (optional)</label>
+        <input type="text" id="address" name="address">
+
+        <label for="city">City / town</label>
+        <input type="text" id="city" name="city" required>
+
+        <label for="postcode">Postcode (optional)</label>
+        <input type="text" id="postcode" name="postcode">
+
+        <label for="household_size">Number of people in your household</label>
+        <input type="number" id="household_size" name="household_size" min="1" value="1" required>
+
+        <label for="dietary_needs">Dietary needs or allergies (optional)</label>
+        <input type="text" id="dietary_needs" name="dietary_needs" placeholder="e.g. Halal, nut allergy, vegetarian">
+
+        <label for="preferred_food_bank_id">Nearest / preferred food bank (optional)</label>
+        <select id="preferred_food_bank_id" name="preferred_food_bank_id">
+            <option value="">No preference</option>
+            {% for fb in food_banks %}
+                <option value="{{ fb.id }}">{{ fb.name }} — {{ fb.city }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="notes">Anything else you'd like us to know (optional)</label>
+        <textarea id="notes" name="notes" rows="3"></textarea>
+
+        <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+</section>
+{% endblock %}

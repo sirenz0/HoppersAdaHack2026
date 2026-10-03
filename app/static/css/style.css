@@ -1,0 +1,650 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 2rem;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.site-header .logo {
+    color: var(--accent-3);
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+}
+
+.site-header nav a {
+    color: var(--accent-3);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.site-header nav a:hover {
+    color: var(--text-heading);
+}
+
+main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+h1, h2, h3 {
+    color: var(--text-heading);
+    font-weight: 700;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+}
+
+.btn-secondary {
+    background: var(--color-secondary);
+    color: white;
+}
+
+.how-it-works {
+    margin-top: 3rem;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    gap: 0.4rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.form-section label {
+    font-weight: 600;
+    margin-top: 0.6rem;
+}
+
+.form-section input,
+.form-section select,
+.form-section textarea {
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+}
+
+.form-section button {
+    margin-top: 1rem;
+    align-self: flex-start;
+}
+
+.deliveries-section {
+    margin-top: 3rem;
+}
+
+.delivery-list {
+    list-style: none;
+    padding: 0;
+}
+
+.delivery-item {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.flashes {
+    list-style: none;
+    padding: 0;
+}
+
+.flash {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.flash-success {
+    background: #e3f6e8;
+    color: var(--color-primary-dark);
+    border: 1px solid var(--color-primary);
+}
+
+.site-footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.map-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#map {
+    width: 100%;
+    height: 480px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+}
+
+.map-status {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.btn-tertiary {
+    background: var(--color-tertiary);
+    color: white;
+}
+
+.btn-tertiary:hover {
+    background: var(--color-tertiary-dark);
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 0.75rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+.map-callout {
+    margin-top: 3rem;
+    text-align: center;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+}
+
+.map-callout .btn {
+    margin-top: 1rem;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+}
+
+.schedule-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.schedule-card {
+    margin-top: 1rem;
+}
+
+.slot-list {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.availability-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.75rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.availability-table th,
+.availability-table td {
+    text-align: left;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.availability-table th {
+    background: var(--color-bg);
+}
+
+.schedule-footer {
+    margin-top: 2rem;
+}
+
+.dev-line {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: 0 0 1rem;
+}
+
+.dev-line a {
+    color: inherit;
+}
+
+.inline-claim-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.inline-claim-form input {
+    padding: 0.4rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    flex: 1;
+    min-width: 160px;
+}
+
+.request-delivery-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    gap: 0.4rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.request-delivery-form label {
+    font-weight: 600;
+    margin-top: 0.6rem;
+}
+
+.request-delivery-form select,
+.request-delivery-form textarea {
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.request-delivery-form button {
+    margin-top: 1rem;
+    align-self: flex-start;
+}
+
+.booking-list {
+    list-style: none;
+    padding: 0;
+}
+
+.booking-item {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.booking-item.status-requested { border-left-color: #e0a500; }
+.booking-item.status-booked { border-left-color: #1f7a99; }
+.booking-item.status-completed { border-left-color: #2e9e4f; }
+
+.status-label {
+    font-weight: 600;
+}
+
+/* Volunteer landing page */
+
+.hero-banner {
+    background: linear-gradient(135deg, var(--text-heading), var(--accent-3));
+    border-radius: var(--radius-lg);
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero-banner h1 {
+    color: white;
+    font-size: 2.4rem;
+    margin: 0;
+}
+
+.opportunity-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+}
+
+.opportunity-type-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.icon-tile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--text-heading);
+    margin-bottom: 0.75rem;
+}
+
+.icon-tile svg {
+    width: 100%;
+    height: 100%;
+}
+
+.opportunity-type-card h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.05rem;
+}
+
+.opportunity-type-card p {
+    margin: 0 0 0.75rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.opportunity-type-card a {
+    color: var(--accent-3);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.opportunity-type-card a:hover {
+    text-decoration: underline;
+}
+
+.free-meal-projects {
+    margin-bottom: 3rem;
+}
+
+.opportunity-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.25rem;
+}
+
+.opportunity-item {
+    display: flex;
+    gap: 1rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.icon-burst {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    color: #1f6fb2;
+}
+
+.icon-burst svg {
+    width: 100%;
+    height: 100%;
+}
+
+.opportunity-body h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1rem;
+}
+
+.opportunity-body p {
+    margin: 0.15rem 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.spread-word {
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.spread-word p {
+    color: var(--color-text-muted);
+}
+
+/* Home gallery */
+
+.home-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    display: block;
+    min-height: 220px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+}
+
+.gallery-volunteer { background: linear-gradient(160deg, var(--accent-2), var(--text-heading)); }
+.gallery-donate { background: linear-gradient(160deg, var(--accent-3), var(--text-heading)); }
+.gallery-receive { background: linear-gradient(160deg, var(--bg-1), var(--accent-2)); }
+
+.gallery-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.25rem;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), transparent);
+}
+
+.gallery-caption h3 {
+    color: white;
+    margin: 0 0 0.3rem;
+    font-size: 1.05rem;
+}
+
+.gallery-caption p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Donate page */
+
+.donate-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.food-bank-picker {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.food-bank-picker label {
+    font-weight: 600;
+}
+
+.food-bank-picker select {
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+}
+
+.need-panel {
+    background: var(--surface-dark);
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    max-width: 480px;
+}
+
+.need-panel h2 {
+    color: white;
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.need-bar-row {
+    margin-top: 0.85rem;
+}
+
+.need-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.need-bar-pct.need-low { color: var(--accent-1); }
+.need-bar-pct.need-medium { color: #e0a500; }
+.need-bar-pct.need-high { color: #e06b00; }
+
+.need-bar-track {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-pill);
+    height: 8px;
+    overflow: hidden;
+}
+
+.need-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-pill);
+}
+
+.need-bar-fill.need-low { background: var(--accent-1); }
+.need-bar-fill.need-medium { background: #e0a500; }
+.need-bar-fill.need-high { background: #e06b00; }
+
+.donate-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    gap: 0.4rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+}
+
+.donate-form label {
+    font-weight: 600;
+    margin-top: 0.6rem;
+}
+
+.donate-form input,
+.donate-form textarea {
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+}
+
+.donate-form button {
+    margin-top: 1rem;
+    align-self: flex-start;
+}
+
+.pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+}
+
+.pill-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pill-option span {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-bg-muted);
+    color: var(--color-text);
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+}
+
+.pill-option input:checked + span {
+    background: var(--accent-3);
+    color: white;
+}
+
+.pill-option input:focus-visible + span {
+    border-color: var(--text-heading);
+}
+
+.food-bank-pin svg {
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4));
+}

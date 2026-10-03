@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Donate | FoodForScotland{% endblock %}
+
+{% block content %}
+<section class="donate-section">
+    <h1>Donation Page</h1>
+
+    {% if food_banks %}
+    <form method="GET" action="{{ url_for('donations.donate') }}" class="food-bank-picker">
+        <label for="food_bank_picker">Donating to</label>
+        <select id="food_bank_picker" name="food_bank_id" onchange="this.form.submit()">
+            {% for fb in food_banks %}
+                <option value="{{ fb.id }}" {% if selected_food_bank and fb.id == selected_food_bank.id %}selected{% endif %}>
+                    {{ fb.name }} — {{ fb.city }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <div class="need-panel">
+        <h2>What are foodbanks short of?</h2>
+        {% for bar in need_bars %}
+            <div class="need-bar-row">
+                <div class="need-bar-label">
+                    <span>{{ bar.label }}</span>
+                    <span class="need-bar-pct {% if bar.pct >= 70 %}need-high{% elif bar.pct >= 40 %}need-medium{% else %}need-low{% endif %}">{{ bar.pct }}% needed</span>
+                </div>
+                <div class="need-bar-track">
+                    <div class="need-bar-fill {% if bar.pct >= 70 %}need-high{% elif bar.pct >= 40 %}need-medium{% else %}need-low{% endif %}" style="width: {{ bar.pct }}%;"></div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form method="POST" action="{{ url_for('donations.donate') }}" class="donate-form">
+        <input type="hidden" name="food_bank_id" value="{{ selected_food_bank.id }}">
+
+        <label for="donor_name">Your name</label>
+        <input type="text" id="donor_name" name="donor_name" required>
+
+        <label for="donor_email">Your email</label>
+        <input type="email" id="donor_email" name="donor_email" required>
+
+        <label>I can donate:</label>
+        <div class="pill-grid">
+            {% for item in donation_items %}
+                <label class="pill-option">
+                    <input type="checkbox" name="items" value="{{ item }}">
+                    <span>{{ item }}</span>
+                </label>
+            {% endfor %}
+        </div>
+
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="Quantities, collection availability, etc."></textarea>
+
+        <button type="submit" class="btn btn-primary">Donate</button>
+    </form>
+    {% else %}
+        <p>No food banks have been added yet. Check back soon!</p>
+    {% endif %}
+</section>
+{% endblock %}

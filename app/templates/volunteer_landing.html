@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Volunteer | FoodForScotland{% endblock %}
+
+{% block content %}
+<section class="hero-banner">
+    <h1>Volunteer With Us</h1>
+</section>
+
+<section class="opportunity-types">
+    <div class="opportunity-type-card">
+        <span class="icon-tile">{% include "icons/_van.svg" %}</span>
+        <h3>Deliver Food</h3>
+        <p>Help collect and deliver food to people and organisations.</p>
+        <a href="{{ url_for('volunteers.signup') }}">Sign up &rarr;</a>
+    </div>
+    <div class="opportunity-type-card">
+        <span class="icon-tile">{% include "icons/_chef.svg" %}</span>
+        <h3>Cook Food</h3>
+        <p>Prepare meals using donated ingredients for people in need.</p>
+        <a href="{{ url_for('volunteers.signup') }}">Sign up &rarr;</a>
+    </div>
+    <div class="opportunity-type-card">
+        <span class="icon-tile">{% include "icons/_box.svg" %}</span>
+        <h3>Collect &amp; Sort Food</h3>
+        <p>Help sort donated food at a food bank so it's ready to give out.</p>
+        <a href="{{ url_for('volunteers.signup') }}">Sign up &rarr;</a>
+    </div>
+    <div class="opportunity-type-card">
+        <span class="icon-tile">{% include "icons/_building.svg" %}</span>
+        <h3>Volunteer as a Company</h3>
+        <p>Companies can offer their vans, cars or employees to help on selected days.</p>
+        <a href="{{ url_for('volunteers.signup') }}">Sign up &rarr;</a>
+    </div>
+</section>
+
+<section class="free-meal-projects">
+    <h2>Free Meal Projects</h2>
+    <p>
+        We've allocated days where volunteers can come along, collect food,
+        prepare meals or help organise donations.
+    </p>
+
+    {% set opportunities = pickup_opportunities + delivery_opportunities %}
+    {% if opportunities %}
+        <ul class="opportunity-list">
+            {% for opp in opportunities %}
+                <li class="opportunity-item">
+                    <span class="icon-burst">{% include "icons/_burst.svg" %}</span>
+                    <div class="opportunity-body">
+                        <h3>{{ opp.title }}</h3>
+                        <p>{{ opp.subtitle }}</p>
+                        <p>{{ opp.detail }}</p>
+                        {% if opp.notes %}<p>{{ opp.notes }}</p>{% endif %}
+                        <form method="POST" action="{{ url_for('volunteers.claim_delivery', delivery_id=opp.id) if opp.kind == 'pickup' else url_for('volunteers.book_delivery', booking_id=opp.id) }}" class="inline-claim-form">
+                            <input type="email" name="volunteer_email" placeholder="Your email" required>
+                            <button type="submit" class="btn btn-secondary">Sign up</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No open volunteer opportunities right now — check back soon.</p>
+    {% endif %}
+</section>
+
+<section class="spread-word">
+    <h2>Help Us Spread the Word</h2>
+    <p>
+        Raising awareness helps us reach more people in need, find new
+        supporters, and grow our impact.
+    </p>
+    <p>
+        You can help us from the comfort of your own home. You can get
+        involved by sharing our posts on social media, printing and putting
+        up our posters, or simply telling your friends and family. Every
+        share helps.
+    </p>
+    <a class="btn btn-primary" href="{{ url_for('volunteers.signup') }}">Sign up to volunteer</a>
+</section>
+{% endblock %}
