@@ -349,7 +349,7 @@ h1, h2, h3 {
 /* Volunteer landing page */
 
 .hero-banner {
-    background: linear-gradient(135deg, var(--text-heading), var(--accent-3));
+    background: var(--text-heading);
     border-radius: var(--radius-lg);
     padding: 4rem 2rem;
     text-align: center;
@@ -486,9 +486,9 @@ h1, h2, h3 {
     color: white;
 }
 
-.gallery-volunteer { background: linear-gradient(160deg, var(--accent-2), var(--text-heading)); }
-.gallery-donate { background: linear-gradient(160deg, var(--accent-3), var(--text-heading)); }
-.gallery-receive { background: linear-gradient(160deg, var(--bg-1), var(--accent-2)); }
+.gallery-volunteer { background: var(--text-heading); }
+.gallery-donate { background: var(--accent-3); }
+.gallery-receive { background: var(--accent-2); }
 
 .gallery-caption {
     position: absolute;
@@ -496,7 +496,6 @@ h1, h2, h3 {
     right: 0;
     bottom: 0;
     padding: 1.25rem;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), transparent);
 }
 
 .gallery-caption h3 {

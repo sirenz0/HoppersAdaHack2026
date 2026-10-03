@@ -76,34 +76,9 @@ SAMPLE_VOLUNTEERS = [
         has_vehicle=True,
         availability=[(0, time(9, 0), time(12, 0)), (2, time(9, 0), time(12, 0))],
     ),
-    dict(
-        name="Callum Ritchie",
-        email="callum.ritchie@example.com",
-        city="Glasgow",
-        phone="07700 900112",
-        has_vehicle=True,
-        availability=[(1, time(17, 0), time(20, 0))],
-    ),
-    dict(
-        name="Priya Sharma",
-        email="priya.sharma@example.com",
-        city="Dundee",
-        phone="07700 900113",
-        has_vehicle=False,
-        availability=[(2, time(12, 0), time(17, 0))],
-    ),
 ]
 
 SAMPLE_RECIPIENTS = [
-    dict(
-        name="Jamie Stewart",
-        email="jamie.stewart@example.com",
-        city="Glasgow",
-        postcode="G51 2AB",
-        household_size=3,
-        dietary_needs="Nut allergy",
-        preferred_food_bank="Glasgow South West Foodbank",
-    ),
     dict(
         name="Morag Fraser",
         email="morag.fraser@example.com",
@@ -111,14 +86,6 @@ SAMPLE_RECIPIENTS = [
         postcode="EH11 1QW",
         household_size=1,
         preferred_food_bank="Edinburgh Food Project",
-    ),
-    dict(
-        name="Eilidh Grant",
-        email="eilidh.grant@example.com",
-        city="Glasgow",
-        postcode="G51 3KL",
-        household_size=1,
-        preferred_food_bank=None,
     ),
 ]
 
@@ -139,22 +106,22 @@ SAMPLE_PICKUP_REQUESTS = [
     dict(pickup_location="4 Marchmont Road, Edinburgh", food_bank="Edinburgh Food Project",
          status="open", notes="2 boxes of tinned goods, ring doorbell"),
     dict(pickup_location="21 Nethergate, Dundee", food_bank="Dundee Foodbank",
-         status="claimed", notes="Large box, may need help carrying", volunteer_email="priya.sharma@example.com"),
+         status="claimed", notes="Large box, may need help carrying", volunteer_email="fiona.campbell@example.com"),
     dict(pickup_location="88 Byres Road, Glasgow", food_bank="Glasgow South West Foodbank",
-         status="completed", notes="", volunteer_email="callum.ritchie@example.com"),
+         status="completed", notes="", volunteer_email="fiona.campbell@example.com"),
 ]
 
 # one requested, one booked, one completed — covers every booking status
 SAMPLE_DELIVERY_BOOKINGS = [
-    dict(recipient_email="jamie.stewart@example.com", food_bank="Glasgow South West Foodbank",
+    dict(recipient_email="morag.fraser@example.com", food_bank="Edinburgh Food Project",
          day_of_week=1, period="evening", status="requested",
          notes="Please call on arrival"),
     dict(recipient_email="morag.fraser@example.com", food_bank="Edinburgh Food Project",
          day_of_week=0, period="morning", status="booked",
          volunteer_email="fiona.campbell@example.com"),
-    dict(recipient_email="eilidh.grant@example.com", food_bank="Glasgow South West Foodbank",
+    dict(recipient_email="morag.fraser@example.com", food_bank="Edinburgh Food Project",
          day_of_week=4, period="evening", status="completed",
-         volunteer_email="callum.ritchie@example.com"),
+         volunteer_email="fiona.campbell@example.com"),
 ]
 
 TIME_PERIODS = {
